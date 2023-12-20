@@ -21,6 +21,10 @@ const FilterNavbar = (props) => {
         <h2
           id="accordion-collapse-heading-1"
           className="shadow-xl bg-[#ffab5db2]"
+          style={{
+            background: "#FFBF7A",
+            background: "radial-gradient(at center, #FFBF7A, #7B3B01)",
+          }}
         >
           <button
             type="button"
