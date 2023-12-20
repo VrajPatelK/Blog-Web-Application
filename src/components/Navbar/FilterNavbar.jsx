@@ -2,7 +2,6 @@
 import React from "react";
 import { useState } from "react";
 import Dropdown from "../Dropdown/Dropdown";
-import { EditOutlined } from "@ant-design/icons";
 
 const FilterNavbar = (props) => {
   //
