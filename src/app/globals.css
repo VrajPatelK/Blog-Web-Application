@@ -16,12 +16,29 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+html {
+  background: url("https://firebasestorage.googleapis.com/v0/b/id-card-generator-ef058.appspot.com/o/bg.png?alt=media&token=859dc759-3cb6-4092-bd06-e18a15747e09");
+}
+
+.container {
+  width: 83.333333%;
+  margin-inline: auto;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 96.666667%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 91.666667%;
+  }
+}
+
+@media (max-width: 650px) {
+  .container {
+    width: 97.666667%;
+  }
 }
