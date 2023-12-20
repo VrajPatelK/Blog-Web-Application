@@ -12,16 +12,17 @@ import { getServerSession } from "next-auth";
 import CopyButton from "../Button/CopyButton";
 import WhatsappShareBtn from "../Button/WhatsappShareBtn";
 
-const CardHeader = async (props) => {
+const CardHeader = (props) => {
   //
   const { article } = props;
   const formatedDate = moment(article?.createdAt).format("MMMM D, YYYY");
 
-  const session = await getServerSession(authOptions);
-  // const session = useSession();
-  // if (session.status === "loading") {
-  //   return;
-  // }
+  // const session = await getServerSession(authOptions);
+  // const userId = session?.user?._id;
+
+  const session = useSession();
+  if (session.status === "loading") return;
+  const userId = session?.data?.user?._id;
 
   //
   // if (!username) {
@@ -70,10 +71,7 @@ const CardHeader = async (props) => {
           <CopyButton
             text={`${process.env.NEXTAUTH_URL}blogs/${article?._id}`}
           />
-          <LikeBtn
-            articleId={article?._id}
-            userId={session?.user?._id}
-          ></LikeBtn>
+          <LikeBtn articleId={article?._id} userId={userId}></LikeBtn>
         </div>
       )}
     </div>

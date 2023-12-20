@@ -3,11 +3,10 @@ import { useState } from "react";
 import NavItems from "./NavItems";
 import Link from "next/link";
 import NavBarModal from "../Modals/NavBarModal";
-import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Mainlogo from "../Logos/Mainlogo";
 
-const Navbar = () => {
+const MainNavbar = () => {
   //
   const [displayNavbar, setDisplayNavbar] = useState(false);
   const session = useSession();
@@ -73,4 +72,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default MainNavbar;

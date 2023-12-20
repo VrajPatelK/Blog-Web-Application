@@ -3,21 +3,30 @@ import Button1 from "../Button/Button1";
 import CardContainer from "../CardContainer/CardContainer";
 import { PlusOutlined } from "@ant-design/icons";
 import CreateArticleModal from "../Modals/CreateArticleModal";
-import InfoAlert from "./InfoAlert";
+import InfoAlert from "../Alerts/InfoAlert";
 import Image from "next/image";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import FollowBtn from "../Button/FollowBtn";
 import profilebg from "../../../public/profile-bg.png";
+import Toast from "../Toast/Toast";
+
+// caller
+import { getUser } from "@/Helpers/callers";
 
 const Profile = async (props) => {
   //
-  const { publisher, articles } = props;
   const session = await getServerSession(authOptions);
   const userId = session?.user?._id;
   const role = session?.user?.role;
-  const publisherId = publisher?._id;
+  const { articles, publisherId, apiEndPoint } = props;
 
+  //
+  var { message: message2, status: s2 } = await getUser("/" + publisherId);
+  if (s2 !== 200) return <Toast message={message2} type="loading" />;
+  var publisher = message2;
+
+  //
   const gridRows = userId === publisherId ? "grid-rows-2 gap-y-2" : "";
 
   //
@@ -51,7 +60,7 @@ const Profile = async (props) => {
             >
               <FollowBtn userId={userId} publisherId={publisherId}></FollowBtn>
 
-              {publisher?._id === userId && role === "admin" && (
+              {publisherId === userId && role === "admin" && (
                 <div>
                   <CreateArticleModal>
                     <Button1 className="sm:mt-2 md:mt-0 bg-orange-50 shadow-lg">
@@ -74,7 +83,12 @@ const Profile = async (props) => {
           </div>
         ) : (
           <>
-            <CardContainer articles={articles} />
+            <CardContainer
+              apiEndPoint={apiEndPoint}
+              navBarDisplay={true}
+              publisherId={publisherId}
+              userId={userId}
+            />
           </>
         )}
       </Container>

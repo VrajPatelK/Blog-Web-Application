@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar/Navbar";
+import MainNavbar from "@/components/Navbar/MainNavbar";
 import NextSessionProvider from "@/components/NextSessionProvider/NextSessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className + " min-h-screen flex flex-col"}>
         <NextSessionProvider>
           <div className="navbar-div top-0 z-50 fixed pb-2 w-full bg-orange-50 shadow-lg md:py-0 py-2 px-4">
-            <Navbar></Navbar>
+            <MainNavbar></MainNavbar>
           </div>
           <div className="layout-div mt-28">{children}</div>
           {/* <div className="footer-div mt-auto">

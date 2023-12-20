@@ -3,7 +3,7 @@ import React from "react";
 const InfoAlert = ({ children }) => {
   return (
     <div
-      className="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 w-fit"
+      className="flex items-center p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 md:w-1/2 w-full"
       role="alert"
     >
       <svg
@@ -16,7 +16,9 @@ const InfoAlert = ({ children }) => {
         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
       </svg>
       <span className="sr-only">Info</span>
-      <div>{children}</div>
+      <div className="font-medium md:text-xl sm:text-sm text-xs text-center">
+        {children}
+      </div>
     </div>
   );
 };

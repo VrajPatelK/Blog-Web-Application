@@ -13,7 +13,7 @@ const GoogleBtn = () => {
     <button
       type="button"
       onClick={handleSignIn}
-      className="flex items-center py-[2px] pl-[2px] pr-3 rounded-md gap-x-2 w-fit bg-white text-blue-700 font-semibold"
+      className="flex items-center py-[2px] pl-[2px] pr-3 rounded-md gap-x-2 w-fit bg-white text-orange-700 font-semibold"
     >
       <Image
         src={googleIcon}

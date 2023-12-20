@@ -242,7 +242,7 @@ const CreateArticleModal = (props) => {
                       id="description"
                       name="description"
                       rows="4"
-                      className="block p-2.5 w-full text-sm text-gray-900 font-semibold bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                      className="block p-2.5 w-full text-sm text-gray-900 font-semibold bg-gray-50 rounded-lg border border-gray-300 focus:ring-orange-500 focus:border-orange-500"
                       placeholder="Write article description here"
                       required
                     ></textarea>

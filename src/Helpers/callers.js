@@ -5,10 +5,10 @@ import {
   editOptions,
 } from "@/data/data";
 
-async function getArticles(apiEndPoint = "") {
+async function getArticles(apiEndPoint) {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/articles` + apiEndPoint,
+      `http://localhost:3000/api${apiEndPoint}`,
       getOptions
     );
 
@@ -42,50 +42,6 @@ async function getAllTags(apiEndPoint = "") {
     return {
       message: "Could not fetch article tags!",
       status: 400,
-    };
-  }
-}
-
-async function getArticleById(articleid) {
-  try {
-    const response = await fetch(
-      `http://localhost:3000/api/articles/${articleid}`,
-      getOptions
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return { ...data, status: response.status };
-    }
-    return { ...data, status: response.status };
-  } catch (error) {
-    return {
-      message: "Could not fetch article!",
-      status: 400,
-    };
-  }
-}
-
-async function getArticlesByUser(apiEndPoint) {
-  try {
-    const response = await fetch(
-      `http://localhost:3000/api/users` + apiEndPoint,
-      getOptions
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      // throw new Error(data.message, response.status);
-      return { ...data, status: response.status };
-    }
-    return { ...data, status: response.status };
-    //
-  } catch (error) {
-    return {
-      message: "Could not fetch articles for you!",
-      status: 500,
     };
   }
 }
@@ -330,8 +286,6 @@ async function deleteLike(apiEndPoint) {
 export {
   //
   getArticles,
-  getArticleById,
-  getArticlesByUser,
   postArticle,
   deleteArticleById,
   editArticle,
