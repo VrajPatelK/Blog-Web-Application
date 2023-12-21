@@ -5,26 +5,20 @@ const FFLabel = ({ followers, following }) => {
   return (
     <div className="grid grid-cols-2 gap-2 rounded-md text-orange-50 text-lg font-medium h-fit border-green-500">
       <FFModal title="followers" data={followers}>
-        <span
-          className="bg-[orange-800] py-0.5 px-1 text-center rounded-md shadow-lg sm:text-base text-sm border"
-          style={{
-            background: "#FF6401",
-            background: "linear-gradient(135deg, #FF6401, #F92A01)",
-          }}
+        <div
+          className="p-2 rounded-md sm:text-base text-orange-500 text-base font-semibold hover:bg-orange-50"
+          style={{}}
         >
           Followers : {followers.length}
-        </span>
+        </div>
       </FFModal>
       <FFModal title="following" data={following}>
-        <span
-          className="bg-gray-50 py-0.5 px-1 text-center rounded-md shadow-lg sm:text-base text-sm border"
-          style={{
-            background: "#FF6401",
-            background: "linear-gradient(135deg,#F92A01,  #FF6401)",
-          }}
+        <div
+          className="p-2 rounded-md sm:text-base text-orange-500 text-base font-semibold hover:bg-orange-50"
+          style={{}}
         >
           Following : {following.length}
-        </span>
+        </div>
       </FFModal>
     </div>
   );

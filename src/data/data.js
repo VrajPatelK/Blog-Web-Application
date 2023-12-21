@@ -28,19 +28,13 @@ const followUsMenu = [
     url: "#",
   },
   {
-    name: "You Tube",
-    url: "#",
-  },
-  {
-    name: "+91 9999 99999",
-    url: "https://wa.me/(91{MOBILE-NUMBER})/",
-    // e.g. : https://wa.me/919876543210/
+    name: "+91 87329 37702",
+    url: "https://wa.me/(918732937702)/",
     _blank: true,
   },
   {
-    name: "abc@123gmail.com",
-    url: "https://mail.google.com/mail/u/0/?fs=1&to={EMAIL-ID}&tf=cm",
-    // e.g. : "https://mail.google.com/mail/u/0/?fs=1&to=abc@123gmail.com&tf=cm",
+    name: "vraj.patel4801gmail.com",
+    url: "https://mail.google.com/mail/u/0/?fs=1&to=vraj.patel4801gmail.com&tf=cm",
   },
 ];
 

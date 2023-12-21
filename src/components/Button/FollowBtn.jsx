@@ -20,7 +20,8 @@ const FollowBtn = ({ userId, publisherId, labelVisible = true }) => {
   const [IsFollowing, setIsFollowing] = useState(false);
   const [error, setError] = useState(undefined);
 
-  useEffect(() => {
+  //
+  function fetchFollows(apiEndPoint) {
     getFollowersAndFollwing(
       `?type=FollowersAndFollowing&id=${publisherId}`
     ).then((response) => {
@@ -30,6 +31,10 @@ const FollowBtn = ({ userId, publisherId, labelVisible = true }) => {
         return setError(response);
       } else setFollows(response?.message);
     });
+  }
+
+  useEffect(() => {
+    fetchFollows(publisherId);
   }, []);
 
   useEffect(() => {
@@ -63,12 +68,7 @@ const FollowBtn = ({ userId, publisherId, labelVisible = true }) => {
       }
 
       setIsFollowing(false);
-      setFollows((prev) => {
-        return {
-          followers: prev.followers - 1,
-          following: prev.following,
-        };
-      });
+      fetchFollows(publisherId);
       toast.success(result.message);
 
       //
@@ -80,12 +80,7 @@ const FollowBtn = ({ userId, publisherId, labelVisible = true }) => {
       }
 
       setIsFollowing(true);
-      setFollows((prev) => {
-        return {
-          followers: prev.followers + 1,
-          following: prev.following,
-        };
-      });
+      fetchFollows(publisherId);
       toast.success(result.message);
     }
   }

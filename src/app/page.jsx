@@ -4,10 +4,12 @@ import Container from "@/layouts/Container";
 import CardContainer from "@/components/CardContainer/CardContainer";
 
 // callers
-import { getAllTags } from "@/Helpers/callers";
+import { getAllTags, getArticles } from "@/Helpers/callers";
 import Toast from "@/components/Toast/Toast";
 
 export default async function Home() {
+  const articleData = await getArticles("/articles?type=all");
+
   const { message: message2, status: s2 } = await getAllTags();
   if (s2 !== 200) return <Toast message={message2} type="loading" />;
 
@@ -26,7 +28,7 @@ export default async function Home() {
       {/* <Divider /> */}
       <Container>
         <div className="mx-auto flex justify-between gap-x-4">
-          <CardContainer apiEndPoint={"/articles?type=all"} />
+          <CardContainer articleData={articleData} />
           <HomeLeft
             className="hidden md:block bg-orange-50 shadow-lg border"
             badges={message2}

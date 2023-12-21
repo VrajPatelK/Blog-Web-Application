@@ -1,19 +1,24 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 const Dropdown = (props) => {
   //
-  const { title, items } = props;
+  const { title, items, selected: propSelected } = props;
 
   const [displayDropbox, setDisplayDropbox] = useState(false);
-  const [selected, setSelected] = useState(props.selected || undefined);
+  const [selected, setSelected] = useState(propSelected || undefined);
 
   const activeClass =
     "block px-4 py-2 hover:bg-gray-100 bg-gray-200 capitalize cursor-pointer";
   const passiveClass =
     "block px-4 py-2 hover:bg-gray-100 capitalize cursor-pointer";
+
+  //
+  useEffect(() => {
+    setSelected(propSelected);
+  }, [propSelected]);
 
   //
   function selectHandler(selected) {
@@ -27,12 +32,13 @@ const Dropdown = (props) => {
     <div
       onMouseEnter={() => setDisplayDropbox((prev) => !prev)}
       onMouseLeave={() => setDisplayDropbox((prev) => !prev)}
+      onClick={() => setDisplayDropbox((prev) => !prev)}
     >
       <button
         id="dropdownHoverButton"
         data-dropdown-toggle="dropdownHover"
         data-dropdown-trigger="hover"
-        className="text-white w-fit bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
+        className="text-orange-500 w-fit bg-orange-50 bg-opacity-70 hover:shadow font-medium rounded-lg text-sm sm:px-5 sm:py-2.5 p-2 text-center inline-flex items-center"
         type="button"
         onClick={() => setDisplayDropbox((prev) => !prev)}
       >
@@ -57,7 +63,7 @@ const Dropdown = (props) => {
       {displayDropbox && (
         <div
           id="dropdownHover"
-          className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow"
+          className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-xl absolute"
         >
           <ul
             className="py-2 text-sm text-gray-700 dark:text-gray-200"

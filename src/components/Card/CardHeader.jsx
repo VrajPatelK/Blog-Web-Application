@@ -33,7 +33,7 @@ const CardHeader = (props) => {
   //     </>
   //   );
   // }
-  const sharelink = `${process.env.NEXTAUTH_URL}blogs/${article?._id}`;
+  const sharelink = `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/blogs/${article?._id}`;
   const whmsg = `*Blog App* %0a*Title :* ${article?.title}%0a*Author :* ${article?.publisher?.username} %0a*Link :* ${sharelink} %0a`;
 
   //
@@ -44,6 +44,7 @@ const CardHeader = (props) => {
       <div className="grid grid-rows-2">
         <ProfileInfo
           shortName={article?.publisher?.username.toUpperCase().substr(0, 2)}
+          imgUrl={article?.publisher?.imgUrl}
           publisherName={article?.publisher?.username}
           publish_date={formatedDate}
           userid={article?.publisher?._id}
@@ -65,12 +66,10 @@ const CardHeader = (props) => {
         </div>
       </div>
 
-      {session && (
+      {session.data && (
         <div className="flex items-center justify-between h-fit gap-x-3">
           <WhatsappShareBtn msg={whmsg} />
-          <CopyButton
-            text={`${process.env.NEXTAUTH_URL}blogs/${article?._id}`}
-          />
+          <CopyButton text={sharelink} />
           <LikeBtn articleId={article?._id} userId={userId}></LikeBtn>
         </div>
       )}

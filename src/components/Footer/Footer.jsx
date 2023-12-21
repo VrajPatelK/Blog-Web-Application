@@ -1,47 +1,54 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { primaryMenu, followUsMenu } from "@/data/data";
-import logo from "../../../public/vercel.svg";
+import Mainlogo from "../Logos/Mainlogo";
+import { useSession } from "next-auth/react";
 
-import Image from "next/image";
 const Footer = () => {
+  var session = useSession();
+  if (session.status === "loading") return;
+  var userId = session?.data?.user?._id;
+  var year = new Date().getFullYear();
+
   return (
     <div>
-      <footer className="bg-white">
+      <footer className="bg-orange-50">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
-              <Link href="http://localhost:3000/" className="flex items-center">
-                <Image src={logo} w={30} h={30} className="mr-2" alt="logo" />
-                <span className="self-center text-2xl font-semibold whitespace-nowrap">
-                  Blog-app
-                </span>
-              </Link>
+              <Mainlogo />
             </div>
-            <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-8 sm:gap-6 sm:grid-cols-2">
               <div>
-                <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
+                <h2 className="mb-6 text-sm font-semibold text-orange-600 uppercase">
                   Useful links
                 </h2>
                 <ul className="text-gray-500 font-medium">
-                  {primaryMenu.map((item, index) => {
-                    return (
-                      <li className="mb-3" key={index}>
-                        <Link
-                          href={item.url}
-                          aria-current="page"
-                          className="hover:underline "
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    );
-                  })}
+                  <li className="mb-3">
+                    <Link
+                      href={"/"}
+                      aria-current="page"
+                      className="hover:underline"
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li className="mb-3">
+                    <Link
+                      href={`/users/${userId}`}
+                      aria-current="page"
+                      className="hover:underline"
+                    >
+                      Profile
+                    </Link>
+                  </li>
                 </ul>
               </div>
               <div>
-                <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
-                  Follow us
+                <h2 className="mb-6 text-sm font-semibold text-orange-600 uppercase">
+                  Follow
                 </h2>
                 <ul className="text-gray-500 font-medium">
                   {followUsMenu.map((item, index) => {
@@ -59,28 +66,17 @@ const Footer = () => {
                   })}
                 </ul>
               </div>
-              <div>
-                <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
-                  Legal
-                </h2>
-                <ul className="text-gray-500 font-medium">
-                  <li className="mb-4">
-                    <Link href={primaryMenu[2].url} className="hover:underline">
-                      {primaryMenu[2].name}
-                    </Link>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
           <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
           <div className="sm:flex sm:items-center sm:justify-between">
             <span className="text-sm text-gray-500 sm:text-center">
-              © 2023{" "}
+              © {year}{" "}
               <Link href="http://localhost:3000/" className="hover:underline">
-                [Blog-app]™
+                || सेवक शिष्य ||™
               </Link>
-              . All Rights Reserved.
+              <br />
+              All Rights Reserved.
             </span>
             <div className="flex mt-4 sm:justify-center items-center sm:mt-0">
               <Link

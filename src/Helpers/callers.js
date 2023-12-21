@@ -88,6 +88,30 @@ async function getUser(apiEndPoint) {
   }
 }
 
+async function editUser(apiEndPoint, body) {
+  try {
+    const options = {
+      ...editOptions,
+      body: JSON.stringify(body),
+    };
+    const response = await fetch(
+      `http://localhost:3000/api/users` + apiEndPoint,
+      options
+    );
+
+    const data = await response.json();
+    if (!response.ok) {
+      return { ...data, status: response.status };
+    }
+    return { ...data, status: response.status };
+  } catch (error) {
+    return {
+      message: "Could not update user !",
+      status: 400,
+    };
+  }
+}
+
 async function postArticle(body) {
   try {
     const options = {
@@ -293,6 +317,7 @@ export {
   //
   getAllTags,
   getUser,
+  editUser,
   signInUser,
 
   //

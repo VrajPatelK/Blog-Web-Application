@@ -21,3 +21,26 @@ export async function GET(request, { params }) {
     );
   }
 }
+
+export async function PUT(request, { params }) {
+  const { userId } = params;
+  const body = await request.json();
+
+  try {
+    await connectDB();
+    const user = await user_model.findByIdAndUpdate(userId, {
+      ...body,
+    });
+    if (user)
+      return NextResponse.json({ message: "user updated !" }, { status: 200 });
+    return NextResponse.json(
+      { message: "user couldn't find !" },
+      { status: 404 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { message: "user updatetion failure !" },
+      { status: 500 }
+    );
+  }
+}

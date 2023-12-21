@@ -6,10 +6,9 @@ export async function GET(request, { params }) {
   const { articleId } = params;
   try {
     await connectDB();
-    const article = await article_model.findById(articleId).populate({
-      path: "publisher",
-      select: "username",
-    });
+    const article = await article_model
+      .findById(articleId)
+      .populate("publisher");
 
     if (article)
       return NextResponse.json({ message: article }, { status: 200 });
