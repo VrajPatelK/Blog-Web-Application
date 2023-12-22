@@ -208,7 +208,7 @@ const CreateArticleModal = (props) => {
                       className=" w-1/5"
                       onClick={() => handleAddTags()}
                     >
-                      <Button1 className="bg-orange-700 text-white w-full py-2">
+                      <Button1 className="bg-orange-700 text-white w-full py-2 text-xs sm:text-sm xl:text-base">
                         <PlusOutlined className="mr-2" />
                         Tag
                       </Button1>

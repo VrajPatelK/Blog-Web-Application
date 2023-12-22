@@ -8,7 +8,9 @@ import { getAllTags, getArticles } from "@/Helpers/callers";
 import Toast from "@/components/Toast/Toast";
 
 export default async function Home() {
-  const articleData = await getArticles("/articles?type=all");
+  const articleData = await getArticles(
+    "/articles?type=recents&status=published&privacy=public"
+  );
 
   const { message: message2, status: s2 } = await getAllTags();
   if (s2 !== 200) return <Toast message={message2} type="loading" />;

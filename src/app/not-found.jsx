@@ -13,7 +13,7 @@ const NotFoundPage = async () => {
 
   //
   return (
-    <div className="w-fit min-h-96 h-fit flex justify-center items-center flex-col gap-4 bg-orange-200 text-center my-10 mx-auto sm:px-20 px-6 rounded-2xl shadow-2xl">
+    <div className="w-11/12 sm:w-fit min-h-96 h-fit flex justify-center items-center flex-col gap-4 bg-orange-200 text-center my-10 mx-auto sm:px-20 px-6 rounded-2xl shadow-2xl">
       <div className="sm:text-2xl text-xl text-orange-500 font-bold mt-16 shadow bg-orange-100 p-3 rounded-full">
         404 : Page Not Found!
       </div>

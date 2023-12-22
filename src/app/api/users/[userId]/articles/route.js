@@ -18,7 +18,6 @@ async function findArticles(conditions, q = "all") {
 
 export async function GET(request, { params }) {
   const { userId: publisherId } = params;
-  const userId = request.headers.get("userId");
 
   const query = request.nextUrl.searchParams.get("query");
   const articleType = request.nextUrl.searchParams.get("type");
@@ -72,6 +71,7 @@ export async function GET(request, { params }) {
         );
       }
     }
+
     return NextResponse.json({ message: articles }, { status: 200 });
   } catch (error) {
     return NextResponse.json(

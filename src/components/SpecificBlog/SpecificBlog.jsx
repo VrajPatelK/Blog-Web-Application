@@ -39,6 +39,7 @@ const SpecificBlog = (props) => {
               publisherName={publisher.username}
               publish_date={formatedDate}
               userid={publisher._id}
+              imgUrl={publisher?.imgUrl}
             />
             <div className="flex flex-col md:flex-row gap-x-2 lg:mt-0 lg:ml-auto lg:mr-0 mr-auto ml-0 mt-5">
               {/* <Button2 className="mt-2 md:mt-0">
