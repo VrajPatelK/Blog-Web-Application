@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
 
 // This function can be marked `async` if using `await` inside
-export function middleware(request) {
+export async function middleware(request) {
   //
   const isAuth = () => request.cookies.has("next-auth.session-token");
   const pathname = request.nextUrl.pathname;
@@ -13,6 +12,11 @@ export function middleware(request) {
   }
 
   // middleware for apis access
+  if (pathname.startsWith("/api/users") && pathname.endsWith("/articles")) {
+    // auth logic
+    return NextResponse.next();
+  }
+
   if (
     pathname.startsWith("/api/likes") ||
     pathname.startsWith("/api/users") ||
@@ -45,6 +49,7 @@ export const config = {
 
     // api
     "/api/likes",
+    "/api/users/:path/articles",
     // "/api/users/:path*",
     // "/api/articles/:path*",
   ],

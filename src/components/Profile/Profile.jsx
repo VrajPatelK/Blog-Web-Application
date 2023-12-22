@@ -9,7 +9,7 @@ import Toast from "../Toast/Toast";
 import CardProfile from "./CardProfile";
 
 const Profile = async (props) => {
-  const { apiEndPoint, userData, articleData } = props;
+  const { userData, articleData } = props;
   //
   var publisher = userData.message;
   if (userData.status !== 200)
@@ -20,7 +20,6 @@ const Profile = async (props) => {
   const userId = session?.user?._id;
   const role = session?.user?.role;
   const publisherId = publisher?._id;
-  const gridRows = userId === publisherId ? "grid-rows-2 gap-y-2" : "";
 
   //
   return (
@@ -36,7 +35,6 @@ const Profile = async (props) => {
           <div className="lg:w-3/4 md:w-2/3 w-full border-black">
             <CardContainer
               articleData={articleData}
-              apiEndPoint={apiEndPoint}
               navBarDisplay={true}
               publisherId={publisherId}
               userId={userId}

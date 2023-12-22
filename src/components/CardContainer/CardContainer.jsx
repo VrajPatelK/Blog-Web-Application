@@ -15,7 +15,7 @@ const CardContainer = (props) => {
     userId = "",
   } = props;
 
-  const INITIAL_FILTER =
+  const INITIAL_FILTERS =
     publisherId === userId
       ? [
           {
@@ -26,13 +26,13 @@ const CardContainer = (props) => {
           },
           {
             key: "status",
-            selected: "published",
+            selected: publisherId === userId ? "" : "published",
             title: "Status",
             items: ["published", "pending"],
           },
           {
             key: "privacy",
-            selected: "public",
+            selected: publisherId === userId ? "" : "public",
             title: "Privacy",
             items: ["public", "private"],
           },
@@ -48,11 +48,9 @@ const CardContainer = (props) => {
 
   const [error, setError] = useState(undefined);
   const [loader, setLoader] = useState(true);
-  const [filters, setFilters] = useState(INITIAL_FILTER);
   const { message: articles, status } = articleData;
 
   if (error) return <Toast message={error} type="loading" />;
-
   //
   return (
     <>
@@ -62,13 +60,14 @@ const CardContainer = (props) => {
           <FilterNavbar
             publisherId={publisherId}
             userId={userId}
-            filters={filters}
+            INITIAL_FILTERS={INITIAL_FILTERS}
           />
         </div>
       )}
       <div className="w-full px-0.5 sm:px-0 mx-auto mt-5">
         {!articleData && loader && <Loader />}
-        {typeof articles === "string" && (
+        {(typeof articles === "string" ||
+          (Array.isArray(articles) && articles?.length === 0)) && (
           <div className="w-full flex justify-center items-center">
             <InfoAlert>not found 🥱</InfoAlert>
           </div>

@@ -17,7 +17,9 @@ async function findArticles(conditions, q = "all") {
 }
 
 export async function GET(request, { params }) {
-  const { userId } = params;
+  const { userId: publisherId } = params;
+  const userId = request.headers.get("userId");
+
   const query = request.nextUrl.searchParams.get("query");
   const articleType = request.nextUrl.searchParams.get("type");
   var status = request.nextUrl.searchParams.get("status");
@@ -28,12 +30,15 @@ export async function GET(request, { params }) {
     var articles = [];
 
     if (query) {
-      articles = await findArticles({ publisher: userId, title: query }, query);
+      articles = await findArticles(
+        { publisher: publisherId, title: query },
+        query
+      );
     } else {
       //
       if (status && privacy) {
         articles = await findArticles(
-          { publisher: userId, status, privacy },
+          { publisher: publisherId, status, privacy },
           articleType
         );
       }
@@ -41,7 +46,7 @@ export async function GET(request, { params }) {
       //
       else if (privacy) {
         articles = await findArticles(
-          { publisher: userId, privacy },
+          { publisher: publisherId, privacy },
           articleType
         );
       }
@@ -49,14 +54,14 @@ export async function GET(request, { params }) {
       //
       else if (status) {
         articles = await findArticles(
-          { publisher: userId, status },
+          { publisher: publisherId, status },
           articleType
         );
       }
 
       //
       else {
-        articles = await findArticles({ publisher: userId }, articleType);
+        articles = await findArticles({ publisher: publisherId }, articleType);
       }
 
       //
@@ -67,7 +72,6 @@ export async function GET(request, { params }) {
         );
       }
     }
-
     return NextResponse.json({ message: articles }, { status: 200 });
   } catch (error) {
     return NextResponse.json(

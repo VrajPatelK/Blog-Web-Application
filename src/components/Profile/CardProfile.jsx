@@ -7,6 +7,7 @@ import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 import Toast from "../Toast/Toast";
 import Loader from "../Loaders/Loader";
 import FollowBtn from "../Button/FollowBtn";
+import Avatar from "antd/es/avatar/avatar";
 
 const CardProfile = ({ userId, role, publisher }) => {
   //
@@ -19,6 +20,7 @@ const CardProfile = ({ userId, role, publisher }) => {
   if (error) return <Toast message={error} type="loading" />;
   if (!publisher && loader) return <Loader />;
 
+  var bg = publisher?.imgUrl ? "" : "bg-orange-200 bg-opacity-50";
   //
   const publisherId = publisher?._id;
 
@@ -27,9 +29,11 @@ const CardProfile = ({ userId, role, publisher }) => {
     <div className="w-full bg-orange-50 bg-opacity-60 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="flex flex-col items-center pb-10 pt-10">
         <img
-          className="w-24 h-24 mb-3 rounded-full shadow-lg"
-          src={publisher?.imgUrl}
-          alt="Bonnie image"
+          width={50}
+          height={50}
+          className={"w-24 h-24 mb-3 rounded-full shadow-lg " + bg}
+          src={publisher?.imgUrl || process.env.NEXT_PUBLIC_PROFILE_URL}
+          alt={publisher?.username}
         />
         <h5 className="mb-1 text-lg font-medium text-gray-700 dark:text-white text-center">
           {publisher?.username}

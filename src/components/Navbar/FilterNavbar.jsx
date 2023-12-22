@@ -7,12 +7,13 @@ import toast, { Toaster } from "react-hot-toast";
 
 const FilterNavbar = (props) => {
   //
-  const { filters, publisherId, userId } = props;
+  const { INITIAL_FILTERS, publisherId, userId } = props;
 
   var base = `http://localhost:3000/users/${publisherId}`;
   var searchParams = useSearchParams();
   var router = useRouter();
   const [isAllClear, setIsAllClear] = useState(false);
+  const [filters, setAllFilters] = useState(INITIAL_FILTERS);
 
   //
   function filterHandler(key, selectedValue) {
@@ -32,10 +33,23 @@ const FilterNavbar = (props) => {
     if (newQuery.has(key)) newQuery.set(key, selectedValue);
     else newQuery.append(key, selectedValue);
 
+    //
     newQuery = newQuery.toString();
     router.push(`${base}?${newQuery}`);
     toast.success("filtered !");
     setIsAllClear(false);
+
+    // upadte status
+    setAllFilters((prevFilters) => {
+      var newFilters = prevFilters.map((filter) => {
+        if (filter.key === key) {
+          filter.selected = selectedValue;
+        }
+        return filter;
+      });
+
+      return newFilters;
+    });
   }
 
   //
@@ -44,9 +58,19 @@ const FilterNavbar = (props) => {
       toast.error("all filters are already cleared!");
       return;
     }
-    setIsAllClear(true);
     router.push(`${base}?type=all`);
     toast.success("all filters are cleared!");
+
+    // update state
+    setIsAllClear(true);
+    setAllFilters((prevFilters) => {
+      var newFilters = prevFilters.map((filter) => {
+        filter.selected = filter.key === "type" ? "all" : "";
+        return filter;
+      });
+
+      return newFilters;
+    });
   }
 
   //
@@ -64,7 +88,7 @@ const FilterNavbar = (props) => {
                 }
                 title={filter.title}
                 items={filter.items}
-                selected={!isAllClear ? filter.selected : "all"}
+                selected={filter.selected}
               />
             );
           })}
