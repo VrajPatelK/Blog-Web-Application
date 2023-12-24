@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CreateArticleModal from "../Modals/CreateArticleModal";
 import EditProfileModal from "../Modals/EditProfileModal";
 import Button1 from "../Button/Button1";
@@ -7,7 +7,6 @@ import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 import Toast from "../Toast/Toast";
 import Loader from "../Loaders/Loader";
 import FollowBtn from "../Button/FollowBtn";
-import Avatar from "antd/es/avatar/avatar";
 
 const CardProfile = ({ userId, role, publisher }) => {
   //

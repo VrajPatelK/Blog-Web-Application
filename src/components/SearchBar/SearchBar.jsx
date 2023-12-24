@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
 const SearchBar = ({
   placeholder = undefined,
@@ -15,6 +16,7 @@ const SearchBar = ({
   //
   return (
     <form>
+      <Toaster />
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-orange-900 sr-only"
@@ -59,6 +61,8 @@ const SearchBar = ({
               return;
             }
             baseUrl += `?query=${search}`;
+            console.log(search);
+            toast.success("searched!");
             router.push(baseUrl);
           }}
         >

@@ -8,14 +8,17 @@ import Tooltip from "../Tooltip/Tooltip";
 
 // caller
 import { editUser } from "@/Helpers/callers";
+import ImageUpload from "../ImageUpload/ImageUpload";
 
 const EditProfileModal = (props) => {
   //
   const { className, children, user } = props;
 
   const [displayModal, setDisplayModal] = useState(false);
-  const [inputTag, setInputTag] = useState("");
+  const [imgUrl, setImgUrl] = useState(user.imgUrl);
+  const [newimgurl, setNewimgurl] = useState(undefined);
 
+  const [inputTag, setInputTag] = useState("");
   const router = useRouter();
 
   //
@@ -25,6 +28,7 @@ const EditProfileModal = (props) => {
 
     const data = {
       username: formdata.get("username"),
+      imgUrl: newimgurl ? newimgurl : imgUrl,
     };
 
     const result = await editUser(`/${user._id}`, data);
@@ -93,6 +97,18 @@ const EditProfileModal = (props) => {
                 <div className="grid gap-4 mb-4 grid-cols-2">
                   {/* name */}
                   <div className="col-span-2">
+                    <ImageUpload
+                      onImageUpload={(u) => setNewimgurl(u)}
+                      onImageRemove={() => setNewimgurl(undefined)}
+                      imgUrl={user?.imgUrl}
+                      userId={user?._id}
+                    />
+                  </div>
+                </div>
+
+                <div className="grid gap-4 mb-4 grid-cols-2">
+                  {/* name */}
+                  <div className="col-span-2">
                     <label
                       htmlFor="username"
                       className="block mb-2 text-sm font-medium text-white"
@@ -110,6 +126,7 @@ const EditProfileModal = (props) => {
                     />
                   </div>
                 </div>
+
                 <div className="grid gap-4 mb-4 grid-cols-2">
                   {/* email */}
                   <div className="col-span-2">
@@ -135,6 +152,7 @@ const EditProfileModal = (props) => {
                     </div>
                   </div>
                 </div>
+
                 <div className="grid gap-4 mb-4 grid-cols-2">
                   {/* _id */}
                   <div className="col-span-2">

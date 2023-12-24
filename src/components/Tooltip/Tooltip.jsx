@@ -5,6 +5,7 @@ const Tooltip = ({
   bg = "bg-gray-900",
   tc = "text-gray-300",
   display = "md:block hidden",
+  className,
 }) => {
   return (
     <div
@@ -16,7 +17,9 @@ const Tooltip = ({
         " " +
         tc +
         " " +
-        display
+        display +
+        " " +
+        className
       }
     >
       {children}
