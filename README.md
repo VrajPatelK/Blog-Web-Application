@@ -100,7 +100,7 @@ This is to certify that the project entitled <b>“Blogging Web Application”</
 
 ###### Project Guide:
 
-Prof. Fatehma Vohra,<br>
+Prof. Fatema Vhora,<br>
 Department of Information Technology,<br>
 Faculty of Technology,<br>
 Dharmsinh Desai University, Nadiad<br>
