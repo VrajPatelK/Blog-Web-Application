@@ -18,8 +18,8 @@ const CardFooter = (props) => {
   const userId = session?.data?.user?._id;
 
   return (
-    <div className="mt-auto">
-      <BadgeWrapper className="py-2 px-2 sm:justify-end align-middle justify-center">
+    <div className="sm:mt-auto mt-5">
+      <BadgeWrapper className="py-2 px-2 sm:justify-end items-center justify-start">
         {tags.map((tag, index) => (
           <Badge key={index}>{tag}</Badge>
         ))}

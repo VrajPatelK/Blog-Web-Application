@@ -1,5 +1,6 @@
 import connectDB from "@/libs/mongodb";
 import article_model from "@/models/article_model";
+import { Mongoose, mongoose, ObjectId } from "mongoose";
 import { NextResponse } from "next/server";
 
 async function findArticles(conditions, q = "all") {
@@ -30,7 +31,11 @@ export async function GET(request, { params }) {
 
     if (query) {
       articles = await findArticles(
-        { publisher: publisherId, title: query },
+        // { publisher: publisherId, title: query },
+        {
+          publisher: publisherId,
+          $text: { $search: query },
+        },
         query
       );
     } else {

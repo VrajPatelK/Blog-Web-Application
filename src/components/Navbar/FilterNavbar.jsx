@@ -9,7 +9,7 @@ const FilterNavbar = (props) => {
   //
   const { INITIAL_FILTERS, publisherId, userId } = props;
 
-  var base = `http://localhost:3000/users/${publisherId}`;
+  var base = `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/users/${publisherId}`;
   var searchParams = useSearchParams();
   var router = useRouter();
   const [isAllClear, setIsAllClear] = useState(false);
@@ -77,7 +77,7 @@ const FilterNavbar = (props) => {
   return (
     <>
       <Toaster />
-      <div className="w-full flex lg:flex-row flex-col-reverse lg:gap-y-0 gap-y-3 justify-between lg:items-center items-start">
+      <div className="w-full flex lg:flex-row flex-col-reverse lg:gap-y-0 gap-y-3 justify-between items-start">
         <div className="lg:px-2 flex flex-wrap justify-start gap-3 w-fit">
           {filters.map((filter, index) => {
             return (
@@ -106,7 +106,7 @@ const FilterNavbar = (props) => {
             label={"search"}
             btnLable={"search"}
             placeholder={"title ..."}
-            publisherId={publisherId}
+            baseUrl={`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/users/${publisherId}`}
           />
         </div>
       </div>

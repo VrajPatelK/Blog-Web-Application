@@ -14,7 +14,7 @@ const Footer = () => {
 
   return (
     <div>
-      <footer className="bg-orange-50">
+      <footer className="bg-orange-50 mt-20">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
@@ -72,7 +72,10 @@ const Footer = () => {
           <div className="sm:flex sm:items-center sm:justify-between">
             <span className="text-sm text-gray-500 sm:text-center">
               © {year}{" "}
-              <Link href="http://localhost:3000/" className="hover:underline">
+              <Link
+                href={`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}`}
+                className="hover:underline"
+              >
                 || सेवक शिष्य ||™
               </Link>
               <br />

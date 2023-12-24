@@ -9,7 +9,7 @@ const ProfileInfo = (props) => {
   return (
     <Link
       className={
-        "w-fit flex justify-start align-middle cursor-pointer " + classes
+        "w-fit flex justify-start items-center cursor-pointer " + classes
       }
       href={`/users/${userid}`}
     >
@@ -35,10 +35,10 @@ const ProfileInfo = (props) => {
         )}
       </div>
       <div>
-        <div className="text-orange-600 text-lg font-medium">
+        <div className="text-orange-600 sm:text-lg text-base font-medium">
           {publisherName}
         </div>
-        <div className="text-gray-500 text-sm">{publish_date}</div>
+        <div className="text-gray-500 sm:text-sm text-xs">{publish_date}</div>
       </div>
     </Link>
   );

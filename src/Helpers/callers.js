@@ -8,7 +8,7 @@ import {
 async function getArticles(apiEndPoint) {
   try {
     const response = await fetch(
-      `http://localhost:3000/api${apiEndPoint}`,
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api${apiEndPoint}`,
       getOptions
     );
 
@@ -28,7 +28,7 @@ async function getArticles(apiEndPoint) {
 async function getAllTags(apiEndPoint = "") {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/articleTags` + apiEndPoint,
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/articleTags` + apiEndPoint,
       getOptions
     );
 
@@ -52,7 +52,10 @@ async function signInUser(body) {
       ...postOptions,
       body: JSON.stringify(body),
     };
-    const response = await fetch(`http://localhost:3000/api/users`, options);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/users`,
+      options
+    );
 
     const data = await response.json();
 
@@ -71,7 +74,7 @@ async function signInUser(body) {
 async function getUser(apiEndPoint) {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/users` + apiEndPoint,
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/users` + apiEndPoint,
       getOptions
     );
 
@@ -95,7 +98,7 @@ async function editUser(apiEndPoint, body) {
       body: JSON.stringify(body),
     };
     const response = await fetch(
-      `http://localhost:3000/api/users` + apiEndPoint,
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/users` + apiEndPoint,
       options
     );
 
@@ -118,7 +121,10 @@ async function postArticle(body) {
       ...postOptions,
       body: JSON.stringify(body),
     };
-    const response = await fetch(`http://localhost:3000/api/articles`, options);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/articles`,
+      options
+    );
 
     const data = await response.json();
     if (!response.ok) {
@@ -140,7 +146,7 @@ async function editArticle(apiEndPoint, body) {
       body: JSON.stringify(body),
     };
     const response = await fetch(
-      `http://localhost:3000/api/articles` + apiEndPoint,
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/articles` + apiEndPoint,
       options
     );
 
@@ -163,7 +169,7 @@ async function deleteArticleById(apiEndPoint) {
       ...deleteOptions,
     };
     const response = await fetch(
-      `http://localhost:3000/api/articles` + apiEndPoint,
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/articles` + apiEndPoint,
       options
     );
 
@@ -182,7 +188,7 @@ async function deleteArticleById(apiEndPoint) {
 async function getFollowersAndFollwing(apiEndPoint) {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/follows` + apiEndPoint,
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/follows` + apiEndPoint,
       getOptions
     );
 
@@ -205,7 +211,10 @@ async function postFollow(body) {
       ...postOptions,
       body: JSON.stringify(body),
     };
-    const response = await fetch(`http://localhost:3000/api/follows`, options);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/follows`,
+      options
+    );
 
     const data = await response.json();
     if (!response.ok) {
@@ -226,7 +235,7 @@ async function deleteFollow(apiEndPoint) {
       ...deleteOptions,
     };
     const response = await fetch(
-      `http://localhost:3000/api/follows` + apiEndPoint,
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/follows` + apiEndPoint,
       options
     );
 
@@ -246,7 +255,7 @@ async function deleteFollow(apiEndPoint) {
 async function getLikeArticlesByUser(apiEndPoint) {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/likes` + apiEndPoint,
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/likes` + apiEndPoint,
       getOptions
     );
 
@@ -269,7 +278,10 @@ async function postLike(body) {
       ...postOptions,
       body: JSON.stringify(body),
     };
-    const response = await fetch(`http://localhost:3000/api/likes`, options);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/likes`,
+      options
+    );
 
     const data = await response.json();
     if (!response.ok) {
@@ -290,7 +302,7 @@ async function deleteLike(apiEndPoint) {
       ...deleteOptions,
     };
     const response = await fetch(
-      `http://localhost:3000/api/likes` + apiEndPoint,
+      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/likes` + apiEndPoint,
       options
     );
 

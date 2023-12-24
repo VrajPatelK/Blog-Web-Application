@@ -1,28 +1,20 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const SearchBar = ({
   placeholder = undefined,
   label = undefined,
   btnLable = undefined,
-  publisherId = undefined,
+  baseUrl,
 }) => {
   //
-  const formRef = useRef(null);
   const [search, setSearch] = useState("");
   const router = useRouter();
 
   //
-  function submitHandler(e) {
-    e.preventDefault();
-    var formData = new FormData(formRef.current);
-    console.log(formData.get("search"));
-  }
-
-  //
   return (
-    <form onSubmit={submitHandler} ref={formRef}>
+    <form>
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-orange-900 sr-only"
@@ -62,14 +54,12 @@ const SearchBar = ({
           type="button"
           className="text-white absolute end-2.5 bottom-2.5 bg-orange-500 hover:bg-orange-800  font-medium rounded-full text-sm p-2 px-4"
           onClick={() => {
-            var newUrl = `http://localhost:3000/users/${publisherId}`;
-
             if (search?.trim().length === 0) {
-              router.push(newUrl);
+              router.push(baseUrl);
               return;
             }
-            newUrl += `?query=${search}`;
-            router.push(newUrl);
+            baseUrl += `?query=${search}`;
+            router.push(baseUrl);
           }}
         >
           {btnLable}

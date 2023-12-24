@@ -63,9 +63,6 @@ const NavBarModal = (props) => {
           <div className="flex items-center p-4 space-x-3 rtl:space-x-reverse border-gray-200 rounded-b">
             <div className="sm:flex sm:items-center sm:justify-between">
               <span className="text-sm text-gray-100 sm:text-center">
-                {/* <Link href="http://localhost:3000/" className="hover:underline">
-                  || सेवक शिष्य ||™
-                </Link> */}
                 <br />
                 <b>©</b> 2023 All Rights Reserved.
               </span>

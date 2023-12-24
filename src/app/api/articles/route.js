@@ -35,44 +35,28 @@ async function findArticles(conditions, q = "all") {
 
 export async function GET(request) {
   const query = request.nextUrl.searchParams.get("query");
-  const articleType = request.nextUrl.searchParams.get("type");
-  var status = request.nextUrl.searchParams.get("status");
-  var privacy = request.nextUrl.searchParams.get("privacy");
+  const articleType = request.nextUrl.searchParams.get("type") || "recents";
+  var status = request.nextUrl.searchParams.get("status") || "published";
+  var privacy = request.nextUrl.searchParams.get("privacy") || "public";
 
   try {
     await connectDB();
     var articles = [];
 
     if (query) {
-      articles = await findArticles({ title: query }, query);
+      articles = await findArticles(
+        {
+          status: status,
+          privacy: privacy,
+          $text: { $search: query },
+        },
+        articleType
+      );
     } else {
-      //
-      if (status && privacy) {
-        articles = await findArticles({ status, privacy }, articleType);
-      }
-
-      //
-      else if (privacy) {
-        articles = await findArticles({ privacy }, articleType);
-      }
-
-      //
-      else if (status) {
-        articles = await findArticles({ status }, articleType);
-      }
-
-      //
-      else {
-        articles = await findArticles({}, articleType);
-      }
-
-      //
-      if (articleType && articleType != "recents" && articleType !== "all") {
-        return NextResponse.json(
-          { message: "articles couldn't find for you !" },
-          { status: 404 }
-        );
-      }
+      articles = await findArticles(
+        { status: status, privacy: privacy },
+        articleType
+      );
     }
 
     return NextResponse.json({ message: articles }, { status: 200 });
