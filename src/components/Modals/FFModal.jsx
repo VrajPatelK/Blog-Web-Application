@@ -14,36 +14,52 @@ const FFModal = (props) => {
   var totalFollows = data?.length;
 
   if (data.length > 0) {
-    bodyContent = data?.map((user) => {
+    bodyContent = data?.map((record) => {
       var imageUrl =
-        user?.follower?.imgUrl || user?.following?.imgUrl || profileBg;
-      var username = user?.follower?.username || user?.following?.username;
-      var email = user?.follower?.email || user?.following?.email;
+        record?.follower?.imgUrl || record?.following?.imgUrl || profileBg;
+      var username = record?.follower?.username || record?.following?.username;
+      var email = record?.follower?.email || record?.following?.email;
       var id =
-        title === "followers" ? user?.follower?._id : user?.following?._id;
+        title === "followers" ? record?.follower?._id : record?.following?._id;
 
       return (
-        <Link key={user?._id} href={`/users/${id}`}>
-          <li className="py-3 sm:py-4 px-3 hover:rounded-md hover:bg-gray-700 hover:shadow-md">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <Image
-                  className="w-8 h-8 rounded-full"
-                  width={50}
-                  height={50}
-                  src={imageUrl}
-                  alt={username}
-                />
+        <div
+          className="flex hover:bg-gray-700 hover:shadow-md py-3 sm:py-4 px-3 hover:rounded-md"
+          key={record?._id}
+        >
+          <Link href={`/users/${id}`}>
+            <li>
+              <div className="flex items-center">
+                <div className="flex-shrink-0">
+                  <Image
+                    className="w-8 h-8 rounded-full"
+                    width={50}
+                    height={50}
+                    src={imageUrl}
+                    alt={username}
+                  />
+                </div>
+                <div className="flex-1 min-w-0 ms-4">
+                  <p className="sm:text-sm text-xs font-medium truncate text-white">
+                    {username}
+                  </p>
+                  <p className="sm:text-sm text-xs truncate text-gray-400">
+                    {email}
+                  </p>
+                </div>
               </div>
-              <div className="flex-1 min-w-0 ms-4">
-                <p className="text-sm font-medium truncate text-white">
-                  {username}
-                </p>
-                <p className="text-sm truncate text-gray-400">{email}</p>
-              </div>
-            </div>
-          </li>
-        </Link>
+            </li>
+          </Link>
+          <button
+            type="button"
+            className="border-none outline-none ml-auto sm:text-sm text-xs bg-gray-900 text-red-400 p-2 my-auto rounded shadow-md"
+            onClick={() => {
+              props.onRemoveff(record?._id);
+            }}
+          >
+            remove
+          </button>
+        </div>
       );
     });
   } else {
@@ -81,7 +97,7 @@ const FFModal = (props) => {
               {/* <!-- Modal body --> */}
               <div className="w-full p-4 rounded-lg shadow sm:py-8 px-5 bg-gray-800 border-gray-700">
                 <div className="flex items-center justify-between mb-4">
-                  <h5 className="text-xl font-bold leading-none text-white capitalize flex gap-x-3 items-center">
+                  <h5 className="md:text-xl sm:text-lg text-base font-bold leading-none text-white capitalize flex gap-x-3 items-center">
                     {title}{" "}
                     {totalFollows > 0 && (
                       <YellowBadge>{totalFollows}</YellowBadge>

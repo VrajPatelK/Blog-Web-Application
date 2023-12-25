@@ -85,6 +85,17 @@ const FollowBtn = ({ userId, publisherId, labelVisible = true }) => {
     }
   }
 
+  async function handleRemoveFF(recordId) {
+    const result = await deleteFollow(`?recordId=${recordId}`);
+    if (result.status !== 200) {
+      toast.error(response?.message);
+      return setError(result);
+    }
+    setIsFollowing(false);
+    fetchFollows(publisherId);
+    toast.success(result.message);
+  }
+
   //
   return (
     <>
@@ -97,6 +108,7 @@ const FollowBtn = ({ userId, publisherId, labelVisible = true }) => {
             <FFLabel
               followers={follows.followers}
               following={follows.following}
+              onRemoveff={handleRemoveFF}
             />
           )}
           {publisherId !== userId && (

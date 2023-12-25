@@ -61,14 +61,20 @@ export async function DELETE(request) {
   //
   const id1 = request.nextUrl.searchParams.get("id1");
   const id2 = request.nextUrl.searchParams.get("id2");
+  const recordId = request.nextUrl.searchParams.get("recordId");
 
   try {
     await connectDB();
 
-    const result = await follows_modal.deleteOne({
-      follower: id1,
-      following: id2,
-    });
+    var result = null;
+    if (recordId) {
+      result = await follows_modal.findByIdAndDelete(recordId);
+    } else {
+      result = await follows_modal.deleteOne({
+        follower: id1,
+        following: id2,
+      });
+    }
 
     if (result)
       return NextResponse.json({ message: "unfollow !" }, { status: 200 });

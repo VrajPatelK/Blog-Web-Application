@@ -61,7 +61,6 @@ const SearchBar = ({
               return;
             }
             baseUrl += `?query=${search}`;
-            console.log(search);
             toast.success("searched!");
             router.push(baseUrl);
           }}
