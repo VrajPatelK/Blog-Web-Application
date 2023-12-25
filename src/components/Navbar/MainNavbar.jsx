@@ -17,9 +17,7 @@ const MainNavbar = () => {
       <nav>
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto relative">
           <Link
-            href={`${
-              process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
-            }`}
+            href={`${process.env.NEXT_PUBLIC_NEXTAUTH_URL || null}`}
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <Mainlogo />

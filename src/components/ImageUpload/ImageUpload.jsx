@@ -1,14 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { storage } from "@/libs/firebase";
 import {
   ref,
+  getStorage,
   getDownloadURL,
   uploadBytes,
   deleteObject,
 } from "firebase/storage";
+import { initializeApp } from "firebase/app";
+
 import toast from "react-hot-toast";
-import Loader from "../Loaders/Loader";
+import { getFirebaseStorage } from "@/Helpers/callers";
 
 const ImageUpload = (props) => {
   const [newImage, setNewImage] = useState({ url: undefined, name: undefined });
@@ -20,10 +22,17 @@ const ImageUpload = (props) => {
   }, [newImage.url, newImage]);
 
   const uploadOnFirebase = async (upload) => {
+    // get configs
+    const { firebaseConfig } = await getFirebaseStorage();
+    // init firebase app
+    const app = initializeApp(firebaseConfig);
+    // get storage bucket at firebase
+    const storage = getStorage(app);
+    // ref
     const newName = `${props?.userId}-${Date.now()}.png`;
     const imageRef = ref(storage, `image/${newName}`);
     setLoader(true);
-
+    // upload
     uploadBytes(imageRef, upload)
       .then(() => {
         getDownloadURL(imageRef)
@@ -47,9 +56,16 @@ const ImageUpload = (props) => {
   };
 
   const removeImage = async () => {
+    // get configs
+    const { firebaseConfig } = await getFirebaseStorage();
+    // init firebase app
+    const app = initializeApp(firebaseConfig);
+    // get storage bucket at firebase
+    const storage = getStorage(app);
+    // ref
     const desertRef = ref(storage, `image/${newImage.name}`);
     setLoader(true);
-
+    // delete
     deleteObject(desertRef)
       .then(() => {
         setNewImage({ url: undefined, name: undefined });

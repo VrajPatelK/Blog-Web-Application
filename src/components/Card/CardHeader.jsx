@@ -21,9 +21,9 @@ const CardHeader = (props) => {
   if (session.status === "loading") return;
   const userId = session?.data?.user?._id;
 
-  const sharelink = `${
-    process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
-  }/blogs/${article?._id}`;
+  const sharelink = `${process.env.NEXT_PUBLIC_NEXTAUTH_URL || null}/blogs/${
+    article?._id
+  }`;
   const whmsg = `*Blog App* %0a*Title :* ${article?.title}%0a*Author :* ${article?.publisher?.username} %0a*Link :* ${sharelink} %0a`;
 
   //
