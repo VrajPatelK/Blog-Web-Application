@@ -3,6 +3,7 @@ import { Divider } from "antd";
 import BadgeWrapper from "../BadgeWrapper/BadgeWrapper";
 import Badge from "../Badge/Badge";
 import { getPopularTags } from "@/Helpers/Helpers";
+import InfoAlert from "../Alerts/InfoAlert";
 
 const HomeLeft = (props) => {
   //
@@ -18,6 +19,7 @@ const HomeLeft = (props) => {
     // console.log(`${key}: ${tagCountMapUpdated[key]}`); // you get this
     popularTags.push(<Badge key={index++}>{key}</Badge>); //
   }
+  if (popularTags.length === 0) return;
 
   //
   return (
@@ -33,7 +35,7 @@ const HomeLeft = (props) => {
       >
         <div className="font-medium text-lg text-orange-500">Poupular Tags</div>
         <Divider />
-        <BadgeWrapper>{popularTags}</BadgeWrapper>
+        {popularTags.length > 0 && <BadgeWrapper>{popularTags}</BadgeWrapper>}
       </div>
     </>
   );
