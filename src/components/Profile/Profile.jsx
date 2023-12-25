@@ -34,6 +34,12 @@ const Profile = async (props) => {
               userId={userId}
               role={role}
               ADMIN_ROLE={ADMIN_ROLE}
+              ADMIN_EMAIL={ADMIN_EMAIL}
+              totalArticles={
+                Array.isArray(articleData?.message)
+                  ? articleData?.message.length
+                  : 0
+              }
             />{" "}
           </div>
 

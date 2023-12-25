@@ -1,5 +1,6 @@
 import connectDB from "@/libs/mongodb";
 import article_model from "@/models/article_model";
+import likers_modal from "@/models/likers_modal";
 import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
@@ -30,7 +31,15 @@ export async function DELETE(request, { params }) {
 
   try {
     await connectDB();
-    const result = await article_model.findByIdAndDelete(articleId);
+
+    // cascading deletion of likes
+    var result = await likers_modal.deleteMany({ article: articleId });
+
+    // deletion of article
+    result = null;
+    result = await article_model.findOneAndDelete({ _id: articleId });
+
+    // based in condition return response
     if (result)
       return NextResponse.json(
         { message: "article deleted!" },

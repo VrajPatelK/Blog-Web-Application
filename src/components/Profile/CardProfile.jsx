@@ -8,7 +8,14 @@ import Toast from "../Toast/Toast";
 import Loader from "../Loaders/Loader";
 import FollowBtn from "../Button/FollowBtn";
 
-const CardProfile = ({ userId, role, publisher, ADMIN_ROLE }) => {
+const CardProfile = ({
+  userId,
+  role,
+  publisher,
+  ADMIN_ROLE,
+  ADMIN_EMAIL,
+  totalArticles,
+}) => {
   //
 
   const [dorpdown, setDropdown] = useState(false);
@@ -40,6 +47,11 @@ const CardProfile = ({ userId, role, publisher, ADMIN_ROLE }) => {
         <span className="text-sm text-gray-500 dark:text-gray-400 text-center">
           {publisher?.email}
         </span>
+        {publisher?.email === ADMIN_EMAIL && (
+          <span className="text-sm text-orange-500 dark:text-gray-400 text-center mt-2">
+            Total Articles : {totalArticles}
+          </span>
+        )}
         <div className="mt-5">
           <FollowBtn userId={userId} publisherId={publisherId}></FollowBtn>
         </div>
