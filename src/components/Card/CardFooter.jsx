@@ -3,15 +3,9 @@ import BadgeWrapper from "../BadgeWrapper/BadgeWrapper";
 import ManipulationBtns from "../ManipulationBtns/ManipulationBtns";
 import { useSession } from "next-auth/react";
 
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
-
 const CardFooter = (props) => {
   //
   const { tags, article } = props;
-
-  // const session = await getServerSession(authOptions);
-  // const userId = session?.user?._id;
 
   const session = useSession();
   if (session.status === "loading") return;

@@ -26,7 +26,7 @@ const HomeLeft = (props) => {
     <>
       <div
         className={
-          "sm:w-[25%] w-full px-4 pt-3 pb-5 h-fit rounded-lg mt-5 mx-auto " +
+          "sm:w-[35%] w-full px-4 pt-3 pb-5 h-fit rounded-lg mt-5 mx-auto " +
           classes
         }
         style={{

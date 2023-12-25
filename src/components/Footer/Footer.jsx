@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { primaryMenu, followUsMenu } from "@/data/data";
+import { followUsMenu } from "@/data/data";
 import Mainlogo from "../Logos/Mainlogo";
 import { useSession } from "next-auth/react";
 
@@ -73,7 +73,10 @@ const Footer = () => {
             <span className="text-sm text-gray-500 sm:text-center">
               © {year}{" "}
               <Link
-                href={`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}`}
+                href={`${
+                  process.env.NEXT_PUBLIC_NEXTAUTH_URL ||
+                  process.env.NEXTAUTH_URL
+                }`}
                 className="hover:underline"
               >
                 || सेवक शिष्य ||™

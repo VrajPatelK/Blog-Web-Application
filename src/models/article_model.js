@@ -12,7 +12,6 @@ const ArticleSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
-    publish_date: { type: Date, required: true },
     imgUrl: { type: String },
     tags: [{ type: String }],
     publisher: {

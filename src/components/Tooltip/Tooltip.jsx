@@ -12,7 +12,7 @@ const Tooltip = ({
       id="tooltip-left"
       role="tooltip"
       className={
-        "h-fit w-fit z-10 px-2 py-0.5 text-sm font-medium text-gray-300 rounded-lg shadow-sm tooltip dark:bg-gray-700 " +
+        "h-fit w-fit z-10 px-2 py-0.5 text-sm font-medium text-gray-300 rounded-lg shadow-sm tooltip " +
         bg +
         " " +
         tc +

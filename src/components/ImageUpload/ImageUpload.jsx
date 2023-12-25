@@ -83,7 +83,11 @@ const ImageUpload = (props) => {
             width={50}
             height={50}
             className={"sm:w-24 sm:h-24 w-16 h-16 rounded-full"}
-            src={props?.imgUrl || process.env.PROFILE_URL}
+            src={
+              props?.imgUrl ||
+              process.env.NEXT_PUBLIC_PROFILE_URL ||
+              process.env.PROFILE_URL
+            }
             alt={"profileImg"}
           />
         </div>
@@ -138,7 +142,7 @@ const ImageUpload = (props) => {
             <div role="status">
               <svg
                 aria-hidden="true"
-                className="inline w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-orange-600"
+                className="inline w-6 h-6 text-gray-200 animate-spin fill-orange-600"
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +176,7 @@ const ImageUpload = (props) => {
               onClick={removeImage}
             >
               <svg
-                className="w-4 h-4 dark:text-white"
+                className="w-4 h-4"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -201,7 +205,11 @@ const ImageUpload = (props) => {
                 width={50}
                 height={50}
                 className={"sm:w-24 sm:h-24 w-16 h-16 rounded-full shadow-lg"}
-                src={newImage.url || process.env.NEXT_PUBLIC_PROFILE_URL}
+                src={
+                  newImage.url ||
+                  process.env.NEXT_PUBLIC_PROFILE_URL ||
+                  process.env.PROFILE_URL
+                }
                 alt={"profileImg"}
               />
             )}
@@ -222,10 +230,10 @@ const ImageUpload = (props) => {
                     d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                   />
                 </svg>
-                <p className="mb-2 text-xs text-gray-400 dark:text-gray-400">
+                <p className="mb-2 text-xs text-gray-400">
                   <span className="font-semibold">Click to upload</span>
                 </p>
-                <p className="text-xs text-gray-400 dark:text-gray-400 flex flex-wrap max-w-full uppercase">
+                <p className="text-xs text-gray-400 flex flex-wrap max-w-full uppercase">
                   (png, jpg)
                 </p>
               </div>

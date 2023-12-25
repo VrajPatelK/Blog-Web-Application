@@ -32,23 +32,27 @@ const CardProfile = ({
 
   //
   return (
-    <div className="w-full bg-orange-50 bg-opacity-60 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="w-full bg-orange-50 bg-opacity-60 border border-gray-200 rounded-lg shadow">
       <div className="flex flex-col items-center pb-10 pt-10">
         <img
           width={50}
           height={50}
           className={"w-24 h-24 mb-3 rounded-full shadow-lg " + bg}
-          src={publisher?.imgUrl || process.env.NEXT_PUBLIC_PROFILE_URL}
+          src={
+            publisher?.imgUrl ||
+            process.env.NEXT_PUBLIC_PROFILE_URL ||
+            process.env.PROFILE_URL
+          }
           alt={publisher?.username}
         />
-        <h5 className="mb-1 text-lg font-medium text-gray-700 dark:text-white text-center">
+        <h5 className="mb-1 text-lg font-medium text-gray-700 text-center">
           {publisher?.username}
         </h5>
-        <span className="text-sm text-gray-500 dark:text-gray-400 text-center">
+        <span className="text-sm text-gray-500 text-center">
           {publisher?.email}
         </span>
         {publisher?.email === ADMIN_EMAIL && (
-          <span className="text-sm text-orange-500 dark:text-gray-400 text-center mt-2">
+          <span className="text-sm text-orange-500 text-center mt-2">
             Total Articles : {totalArticles}
           </span>
         )}

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ProfileInfo = (props) => {
-  const { userid, shortName, publisherName, publish_date, imgUrl } = props;
+  const { userid, shortName, publisherName, createdAt, imgUrl } = props;
   const classes = props.className;
 
   return (
@@ -38,7 +38,7 @@ const ProfileInfo = (props) => {
         <div className="text-orange-600 sm:text-lg text-base font-medium">
           {publisherName}
         </div>
-        <div className="text-gray-500 sm:text-sm text-xs">{publish_date}</div>
+        <div className="text-gray-500 sm:text-sm text-xs">{createdAt}</div>
       </div>
     </Link>
   );

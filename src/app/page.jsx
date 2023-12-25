@@ -39,7 +39,9 @@ export default async function Home({ params, searchParams }) {
               label={"search"}
               btnLable={"search"}
               placeholder={"title ..."}
-              baseUrl={process.env.NEXT_PUBLIC_NEXTAUTH_URL}
+              baseUrl={
+                process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+              }
             />
           </div>
           <div className="sm:w-1/5 hidden md:block"></div>

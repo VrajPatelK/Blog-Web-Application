@@ -6,7 +6,6 @@ const connectDB = async () => {
   if (isConnected) return;
 
   try {
-    // "mongodb+srv://vrajpatel4801:WGa1Fou2DuijDUbf@cluster0.4yx5v3a.mongodb.net/"
     await mongoose.connect(process.env.MONGO_URL_v2);
 
     var article_model_indexes = await article_model.collection.getIndexes();

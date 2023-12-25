@@ -8,7 +8,9 @@ import {
 async function getArticles(apiEndPoint) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api${apiEndPoint}`,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api${apiEndPoint}`,
       getOptions
     );
 
@@ -28,7 +30,9 @@ async function getArticles(apiEndPoint) {
 async function getAllTags(apiEndPoint = "") {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/articleTags` + apiEndPoint,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api/articleTags` + apiEndPoint,
       getOptions
     );
 
@@ -53,7 +57,9 @@ async function signInUser(body) {
       body: JSON.stringify(body),
     };
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/users`,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api/users`,
       options
     );
 
@@ -74,7 +80,9 @@ async function signInUser(body) {
 async function getUser(apiEndPoint) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/users` + apiEndPoint,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api/users` + apiEndPoint,
       getOptions
     );
 
@@ -98,7 +106,9 @@ async function editUser(apiEndPoint, body) {
       body: JSON.stringify(body),
     };
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/users` + apiEndPoint,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api/users` + apiEndPoint,
       options
     );
 
@@ -122,7 +132,9 @@ async function postArticle(body) {
       body: JSON.stringify(body),
     };
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/articles`,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api/articles`,
       options
     );
 
@@ -146,7 +158,9 @@ async function editArticle(apiEndPoint, body) {
       body: JSON.stringify(body),
     };
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/articles` + apiEndPoint,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api/articles` + apiEndPoint,
       options
     );
 
@@ -169,7 +183,9 @@ async function deleteArticleById(apiEndPoint) {
       ...deleteOptions,
     };
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/articles` + apiEndPoint,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api/articles` + apiEndPoint,
       options
     );
 
@@ -188,7 +204,9 @@ async function deleteArticleById(apiEndPoint) {
 async function getFollowersAndFollwing(apiEndPoint) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/follows` + apiEndPoint,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api/follows` + apiEndPoint,
       getOptions
     );
 
@@ -212,7 +230,9 @@ async function postFollow(body) {
       body: JSON.stringify(body),
     };
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/follows`,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api/follows`,
       options
     );
 
@@ -235,7 +255,9 @@ async function deleteFollow(apiEndPoint) {
       ...deleteOptions,
     };
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/follows` + apiEndPoint,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api/follows` + apiEndPoint,
       options
     );
 
@@ -255,7 +277,9 @@ async function deleteFollow(apiEndPoint) {
 async function getLikeArticlesByUser(apiEndPoint) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/likes` + apiEndPoint,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api/likes` + apiEndPoint,
       getOptions
     );
 
@@ -279,7 +303,9 @@ async function postLike(body) {
       body: JSON.stringify(body),
     };
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/likes`,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api/likes`,
       options
     );
 
@@ -302,7 +328,9 @@ async function deleteLike(apiEndPoint) {
       ...deleteOptions,
     };
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/likes` + apiEndPoint,
+      `${
+        process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+      }/api/likes` + apiEndPoint,
       options
     );
 

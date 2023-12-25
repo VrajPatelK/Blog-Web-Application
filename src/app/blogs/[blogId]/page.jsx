@@ -13,7 +13,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
     article.description,
     article.title,
     article.publisher.username,
-    article.publish_date,
+    article.createdAt,
     article.createdAt,
     article.updatedAt,
   ]);

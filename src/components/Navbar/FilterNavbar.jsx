@@ -9,7 +9,9 @@ const FilterNavbar = (props) => {
   //
   const { INITIAL_FILTERS, publisherId, userId } = props;
 
-  var base = `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/users/${publisherId}`;
+  var base = `${
+    process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+  }/users/${publisherId}`;
   var searchParams = useSearchParams();
   var router = useRouter();
   const [isAllClear, setIsAllClear] = useState(false);
@@ -106,7 +108,9 @@ const FilterNavbar = (props) => {
             label={"search"}
             btnLable={"search"}
             placeholder={"title ..."}
-            baseUrl={`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/users/${publisherId}`}
+            baseUrl={`${
+              process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL
+            }/users/${publisherId}`}
           />
         </div>
       </div>

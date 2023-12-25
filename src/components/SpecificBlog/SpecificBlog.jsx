@@ -37,7 +37,7 @@ const SpecificBlog = (props) => {
             <ProfileInfo
               shortName={publisher.username.toUpperCase().substr(0, 2)}
               publisherName={publisher.username}
-              publish_date={formatedDate}
+              createdAt={formatedDate}
               userid={publisher._id}
               imgUrl={publisher?.imgUrl}
             />

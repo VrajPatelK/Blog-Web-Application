@@ -4,14 +4,18 @@ import user_model from "@/models/user_model";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
+  const body = await request.json();
   try {
-    const body = await request.json();
-    await article_model.create({
-      ...body,
-      publish_date: new Date(Date.now()),
-    });
+    await connectDB();
+
+    //
+    if (Array.isArray(body)) await article_model.insertMany(body);
+    else await article_model.create(body);
+
+    //
     return NextResponse.json({ message: "article created !" }, { status: 200 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { message: "article creation failed !" },
       { status: 500 }
