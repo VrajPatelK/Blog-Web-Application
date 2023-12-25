@@ -11,32 +11,6 @@ export async function middleware(request) {
     return isAuth() ? NextResponse.next() : NextResponse.error();
   }
 
-  // middleware for apis access
-  if (pathname.startsWith("/api/users") && pathname.endsWith("/articles")) {
-    // auth logic
-    return NextResponse.next();
-  }
-
-  if (
-    pathname.startsWith("/api/likes") ||
-    pathname.startsWith("/api/users") ||
-    pathname.startsWith("/api/articles") ||
-    pathname.startsWith("/api/articleTags")
-  ) {
-    var len = pathname.split("/").length;
-
-    if (
-      pathname === "/api/articles" ||
-      pathname === "/api/articleTags" ||
-      (pathname.startsWith("/api/users") && (len === 3 || len === 4))
-    ) {
-      return NextResponse.next();
-    }
-
-    //
-    return isAuth() ? NextResponse.next() : NextResponse.error();
-  }
-
   return NextResponse.error();
 }
 
@@ -46,13 +20,5 @@ export const config = {
     //pages
     "/users/:path*",
     "/blogs/:path*",
-
-    // api
-    "/api/likes",
-    "/api/users/:path/articles",
-    // "/api/users/:path*",
-    // "/api/articles/:path*",
   ],
 };
-
-// note : (pathname.startsWith("/api/users") && (len === 2 || len === 3)) ==> this is for signin callback and session callback
