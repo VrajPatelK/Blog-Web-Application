@@ -39,7 +39,10 @@ export const authOptions = {
       // resplace "session.user" with "our db user"
       session.user = {
         ...message,
-        role: message.email === process.env.ADMIN_EMAIL ? "admin" : "user",
+        role:
+          message.email === process.env.ADMIN_EMAIL
+            ? process.env.ROLE_ADMIN
+            : process.env.ROLE_USER,
       };
       return session;
     },

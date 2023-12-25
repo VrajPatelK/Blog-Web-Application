@@ -8,7 +8,7 @@ import Toast from "../Toast/Toast";
 import Loader from "../Loaders/Loader";
 import FollowBtn from "../Button/FollowBtn";
 
-const CardProfile = ({ userId, role, publisher }) => {
+const CardProfile = ({ userId, role, publisher, ADMIN_ROLE }) => {
   //
 
   const [dorpdown, setDropdown] = useState(false);
@@ -43,8 +43,8 @@ const CardProfile = ({ userId, role, publisher }) => {
         <div className="mt-5">
           <FollowBtn userId={userId} publisherId={publisherId}></FollowBtn>
         </div>
-        {publisherId === userId && role === "admin" && (
-          <div className="flex gap-3 mt-3">
+        <div className="flex gap-3 mt-3">
+          {publisherId === userId && role === ADMIN_ROLE && (
             <div>
               <CreateArticleModal>
                 <Button1 className="sm:mt-2 md:mt-0 bg-orange-50 shadow-lg">
@@ -52,6 +52,8 @@ const CardProfile = ({ userId, role, publisher }) => {
                 </Button1>
               </CreateArticleModal>
             </div>
+          )}
+          {publisherId === userId && (
             <div>
               <EditProfileModal user={publisher}>
                 <Button1 className="sm:mt-2 md:mt-0 bg-orange-50 shadow-lg">
@@ -59,6 +61,13 @@ const CardProfile = ({ userId, role, publisher }) => {
                 </Button1>
               </EditProfileModal>
             </div>
+          )}
+        </div>
+        {publisherId === userId && role !== ADMIN_ROLE && (
+          <div className="mt-5 italic md:text-lg sm:text-sm text-xs text-amber-800 rounded p-3">
+            You can also publish your thoughts &nbsp;
+            <EditOutlined />
+            &nbsp;soon ...
           </div>
         )}
       </div>

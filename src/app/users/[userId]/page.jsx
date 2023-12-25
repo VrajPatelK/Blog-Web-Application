@@ -34,7 +34,14 @@ export default async function ProfilePage({ params, searchParams }) {
   const articleData = await getArticles(articlesUrl);
 
   //
-  return <Profile userData={userData} articleData={articleData} />;
+  return (
+    <Profile
+      userData={userData}
+      articleData={articleData}
+      ADMIN_EMAIL={process.env.ADMIN_EMAIL}
+      ADMIN_ROLE={process.env.ROLE_ADMIN}
+    />
+  );
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
