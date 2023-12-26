@@ -5,13 +5,14 @@ export function middleware(request) {
   const pathname = request.nextUrl.pathname;
 
   // middleware for pages access
-  if (pathname.startsWith("/users") || pathname.startsWith("/blogs")) {
-    return isAuth() ? NextResponse.next() : NextResponse.error({ status: 401 });
+  // if (pathname.startsWith("/users") || pathname.startsWith("/blogs")) {
+  //   return isAuth() ? NextResponse.next() : NextResponse.error({ status: 401 });
+  // }
+  if (isAuth()) {
+    NextResponse.next();
   }
-
-  return NextResponse.error({ status: 404 }); // Adjust the status code as needed
 }
 
 export const config = {
-  matcher: ["/users/:path*", "/blogs/:path*"],
+  matcher: ["/users/:path", "/blogs/:path"],
 };
