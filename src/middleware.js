@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function middleware(request) {
+export function middleware(request) {
   const isAuth = () => request.cookies.has("next-auth.session-token");
   const pathname = request.nextUrl.pathname;
 
