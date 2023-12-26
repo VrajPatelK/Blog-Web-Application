@@ -23,7 +23,6 @@ export const authOptions = {
 
         return profile.email_verified ? true : false;
       } catch (error) {
-        console.log("callback sign in error", error);
         return false;
       }
     },

@@ -16,7 +16,6 @@ const HomeLeft = (props) => {
 
   let index = 0;
   for (const key in tagCountMapUpdated) {
-    // console.log(`${key}: ${tagCountMapUpdated[key]}`); // you get this
     popularTags.push(<Badge key={index++}>{key}</Badge>); //
   }
   if (popularTags.length === 0) return;

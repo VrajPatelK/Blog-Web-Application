@@ -16,11 +16,7 @@ const connectDB = async () => {
       });
       // console.log("text_index created for article modal !");
     }
-
-    console.log("db-connected");
-  } catch (error) {
-    console.log("db-connection-error", error);
-  }
+  } catch (error) {}
   isConnected = true;
 };
 

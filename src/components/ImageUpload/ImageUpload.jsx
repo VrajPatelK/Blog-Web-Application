@@ -18,7 +18,6 @@ const ImageUpload = (props) => {
 
   useEffect(() => {
     // use-effect is important otherwise when we remove the image, this client sode component will not get re-rendering frequently!
-    // console.log("new url is changed!");
   }, [newImage.url, newImage]);
 
   const uploadOnFirebase = async (upload) => {
@@ -51,7 +50,7 @@ const ImageUpload = (props) => {
           });
       })
       .catch((error) => {
-        console.log(error.message);
+        toast.error("image uplaod failure!");
       });
   };
 

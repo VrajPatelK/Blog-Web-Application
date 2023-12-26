@@ -17,7 +17,6 @@ const Description = (props) => {
 
   useEffect(() => {
     if (paraRef.current) {
-      // console.log(paraRef.current.scrollHeight, paraRef.current.clientHeight);
       setDisplayReadBtn(
         paraRef.current.scrollHeight !== paraRef.current.clientHeight
       );
