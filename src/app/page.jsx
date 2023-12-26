@@ -4,7 +4,7 @@ import Container from "@/layouts/Container";
 import CardContainer from "@/components/CardContainer/CardContainer";
 import SearchBar from "@/components/SearchBar/SearchBar";
 
-// callers
+// callers.
 import { getAllTags, getArticles } from "@/Helpers/callers";
 import Toast from "@/components/Toast/Toast";
 
