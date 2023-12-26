@@ -1,6 +1,7 @@
 import GoogleProvider from "next-auth/providers/google";
 import NextAuth from "next-auth/next";
 import { getUser, signInUser } from "@/Helpers/callers";
+import { NextResponse } from "next/server";
 
 export const authOptions = {
   //
@@ -26,7 +27,9 @@ export const authOptions = {
         return false;
       }
     },
-
+    async redirect({ url, baseUrl }) {
+      return baseUrl;
+    },
     async session({ session, user, token, account }) {
       //
       const { message, status } = await getUser(`/${session.user.email}`);
