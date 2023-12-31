@@ -109,6 +109,8 @@ const FollowBtn = ({ userId, publisherId, labelVisible = true }) => {
               followers={follows.followers}
               following={follows.following}
               onRemoveff={handleRemoveFF}
+              userId={userId}
+              publisherId={publisherId}
             />
           )}
           {publisherId !== userId && (

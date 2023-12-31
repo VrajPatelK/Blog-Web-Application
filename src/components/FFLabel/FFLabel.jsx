@@ -11,6 +11,8 @@ const FFLabel = (props) => {
       <FFModal
         title="followers"
         data={followers}
+        userId={props.userId}
+        publisherId={props.publisherId}
         onRemoveff={(recordId) => props.onRemoveff(recordId)}
       >
         <div
@@ -23,6 +25,8 @@ const FFLabel = (props) => {
       <FFModal
         title="following"
         data={following}
+        userId={props.userId}
+        publisherId={props.publisherId}
         onRemoveff={(recordId) => props.onRemoveff(recordId)}
       >
         <div

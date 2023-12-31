@@ -8,7 +8,7 @@ import Link from "next/link";
 const FFModal = (props) => {
   //
   const [displayModal, setDisplayModal] = useState(false);
-  const { className, children, title, data } = props;
+  const { className, children, title, data, userId, publisherId } = props;
 
   var bodyContent;
   var totalFollows = data?.length;
@@ -50,15 +50,17 @@ const FFModal = (props) => {
               </div>
             </li>
           </Link>
-          <button
-            type="button"
-            className="border-none outline-none ml-auto sm:text-sm text-xs bg-gray-900 text-red-400 p-2 my-auto rounded shadow-md"
-            onClick={() => {
-              props.onRemoveff(record?._id);
-            }}
-          >
-            remove
-          </button>
+          {userId === publisherId && (
+            <button
+              type="button"
+              className="border-none outline-none ml-auto sm:text-sm text-xs bg-gray-900 text-red-400 p-2 my-auto rounded shadow-md"
+              onClick={() => {
+                props.onRemoveff(record?._id);
+              }}
+            >
+              remove
+            </button>
+          )}
         </div>
       );
     });
